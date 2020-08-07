@@ -1,0 +1,6 @@
+#!/bin/bash
+DIRPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+java -jar "$DIRPATH"/seq2anim.jar "$1" "$2"".anim"
+ffmpeg -f iff -i "$2"".anim" -c:v libx264 -crf 1 -preset slow "$2"
+rm -f "$2"".anim"
